@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Welcome to Feathers</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<main class="container">
+    <p>hello world</p>
+</main>
+
+<script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  // Initialize our Feathers client application through Socket.io
+  // with hooks and authentication.
+  const client = feathers();
+
+  client.configure(feathers.socketio(socket));
+  // Use localStorage to store our login token
+
+  client.service('messages').on('created', function (msg) {
+    console.log({msg: msg});
+  });
+
+</script>
+</body>
+</html>
